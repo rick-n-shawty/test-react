@@ -8,6 +8,8 @@ function App() {
   const [secret, setSecret] = useState('')
   const baseURL = 'https://test-bwau.onrender.com'
   axios.defaults.withCredentials = true
+  const axiosJWT = axios.create()
+  axiosJWT.defaults.withCredentials = true
   const handleSubmit = async (e) =>{
     e.preventDefault()
     try{
@@ -32,6 +34,18 @@ function App() {
       console.log(err)
     }
   }
+   axiosJWT.interceptors.request.use(async(config) =>{
+    console.log('interceptor')
+    let time = new Date()
+    const decoded = jwt_decode(user.accessToken)
+    if(decoded.exp * 998 < time.getTime()){
+      const res = await axios.post(baseURL + '/refresh_token')
+      console.log(res)
+      const {accessToken} = res.data
+      setUser({accessToken})
+    }
+    return config
+  })
   return (
     <div className="App">
       {user.accessToken ? 
