@@ -25,7 +25,7 @@ function App() {
   }
   const getSecret = async () =>{
     try{
-      const res = await axios.get(baseURL + '/secret', {headers: {
+      const res = await axiosJWT.get(baseURL + '/secret', {headers: {
         Authorization: `Bearer ${user.accessToken}`
       }})
       console.log(res)
