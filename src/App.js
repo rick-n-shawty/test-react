@@ -1,6 +1,7 @@
 import './App.css';
 import {useState} from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 function App() {
   const [user, setUser] = useState({})
   const [name, setName] = useState('')
