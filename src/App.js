@@ -39,7 +39,7 @@ function App() {
     console.log('interceptor')
     let time = new Date()
     const decoded = jwt_decode(user.accessToken)
-    if(decoded.exp * 998 < time.getTime()){
+    if((decoded.exp * 1000) - 10 < time.getTime()){
       const res = await axios.post(baseURL + '/refresh_token')
       console.log(res)
       const {accessToken} = res.data
