@@ -6,7 +6,7 @@ function App() {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [secret, setSecret] = useState('')
-  const baseURL = 'http://localhost:5000'
+  const baseURL = 'https://test-bwau.onrender.com'
   axios.defaults.withCredentials = true
   const handleSubmit = async (e) =>{
     e.preventDefault()
